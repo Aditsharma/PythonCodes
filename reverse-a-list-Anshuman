@@ -1,6 +1,12 @@
-a=[1,2,2,3,4,5,56,67] # list to reverse
-b=[] # taking empty list for updating
-for i in range((len(a)-1),-1,-1):
-  b=b+[a[i]] # concatinating list types
-  
-print(b) # printing the list
+# list to reverse.
+a=[1,2,2,3,4,5,56,67] 
+
+# taking empty list for updating.   
+b=[] 
+
+#Iterating the list from last element to first.
+for i in range((len(a)-1),-1,-1): 
+  b=b+[a[i]] # concatinating two list types
+
+# printing the list.
+print(b) 
