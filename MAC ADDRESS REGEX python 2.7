@@ -1,0 +1,55 @@
+import re
+
+a = ''' Spanning-tree Mode: Spanning Tree Protocol
+
+      Root ID      Priority 32768
+                   Address 01e0.5200.018b
+                   Hello Time 2, Max Age 20, Forward Delay 15
+
+      Bridge ID    Priority 32768
+                   Address 01e0.5200.018b
+                   Root Port Po 100
+                   Hello Time 2, Max Age 20, Forward Delay 15
+
+ Interface     Role  Sts  Cost       Prio  Link-type        Edge
+ ---------------------------------------------------------------------
+ Po 100        RTPT  FWD  2000       128   P2P               No  
+'''
+
+b=''' 
+Spanning-tree Mode: Spanning Tree Protocol
+
+      Root ID      Priority 0
+                   Address 01e0.5200.02fc
+                   Hello Time 2, Max Age 20, Forward Delay 15
+
+      Bridge ID    Priority 0
+                   Address 01e0.5200.02fc
+                   Hello Time 2, Max Age 20, Forward Delay 15
+
+ Interface     Role  Sts  Cost       Prio  Link-type        Edge
+ ---------------------------------------------------------------------
+ Po 100        DES   FWD  2000       128   P2P               No  
+'''
+
+#pattern = '\w+\s((\w+\.){3}\w+)'
+
+#pattern=r"\w+\s([0-9a-fA-F]{4}\.){2}([0-9a-fA-F]{4})"
+
+pattern= "\w+\W\w+\s\w+\:\s\w+\s\w+\s\w+\s+\w+\s\w+\s+\w+\s\d+\s+\w+\s(([0-9a-fA-F]{4}\.){2}([0-9a-fA-F]{4}))"
+
+pba=str(a)
+pbo=str(b)
+
+result1=re.search(pattern,pba)
+result2=re.search(pattern,pbo)
+
+a1=result1.group(1)
+b1=result2.group(1)
+print a1,b1
+assert(a1!=b1), "fun"
+
+if(a1!=b1):
+  print('pass')
+else:
+  print('fail')
